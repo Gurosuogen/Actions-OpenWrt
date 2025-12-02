@@ -31,13 +31,13 @@ sed -i 's/UTC/Asia\/Shanghai/g' package/base-files/files/bin/config_generate
 sed -i 's/GMT0/CST-8/g' package/base-files/files/bin/config_generate  
 sed "/set system.ntp.enabled='1'/d" package/base-files/files/bin/config_generate
 sed "/set system.ntp.enable_server='0'/d" package/base-files/files/bin/config_generate
-sed "/^set system.@system[-1].urandom_seed='0'/a\\
-  set system.@system[-1].log_proto='udp'\\
-  set system.@system[-1].conloglevel='8'\\
-  set system.@system[-1].cronloglevel='7'" package/base-files/files/bin/config_generate
+sed -i "/set system\.@system\[-1\]\.urandom_seed='0'/c\\
+set system.@system[-1].log_proto='udp'\\
+set system.@system[-1].conloglevel='8'\\
+set system.@system[-1].cronloglevel='7'" package/base-files/files/bin/config_generate
 
 # Create Tailscale network
-sed -i "/add_list network.loopback.ipaddr='127.0.0.1\/8'/a\\
+sed -i "/add_list network.loopback.ipaddr='127.0.0.1\/8'/a \\
   set network.tailscale=interface\\
   set network.tailscale.proto='none'\\
   set network.tailscale.device='tailscale0'\\
