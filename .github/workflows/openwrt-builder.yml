@@ -24,8 +24,8 @@ concurrency:
 env:
   CCACHE_DIR: /workdir/.ccache
   CCACHE_MAXSIZE: 6G
-  REPO_URL: https://github.com/padavanonly/immortalwrt-mt798x-6.6
-  REPO_BRANCH: openwrt-24.10-6.6
+  REPO_URL: https://github.com/openwrt/openwrt
+  REPO_BRANCH: openwrt-24.10
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: config/128m.config
   DIY_P1_SH: diy-part1.sh
