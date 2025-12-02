@@ -38,7 +38,7 @@ sed "/^set system.@system[-1].urandom_seed='0'/a\\
 
 # Create Tailscale network
 sed -i "/add_list network.loopback.ipaddr='127.0.0.1\/8'/a\\
-    uci set network.tailscale=interface\\
-    uci set network.tailscale.proto='none'\\
-    uci set network.tailscale.device='tailscale0'\\
-    uci set network.tailscale.packet_steering='1'" package/base-files/files/bin/config_generate
+  set network.tailscale=interface\\
+  set network.tailscale.proto='none'\\
+  set network.tailscale.device='tailscale0'\\
+  set network.tailscale.packet_steering='1'" package/base-files/files/bin/config_generate
