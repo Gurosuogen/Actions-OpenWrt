@@ -119,3 +119,27 @@ config rule
         option dest_port '500'
         option proto 'udp'
         option target 'ACCEPT'
+config zone
+        option name 'tailscale'
+        option input 'ACCEPT'
+        option output 'ACCEPT'
+        option forward 'ACCEPT'
+        list network 'tailscale'
+        option masq '1'
+        option mtu_fix '1'
+
+config forwarding
+        option src 'tailscale'
+        option dest 'lan'
+
+config forwarding
+        option src 'tailscale'
+        option dest 'wan'
+
+config forwarding
+        option src 'lan'
+        option dest 'tailscale'
+
+config forwarding
+        option src 'wan'
+        option dest 'tailscale'
