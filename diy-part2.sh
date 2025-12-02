@@ -21,3 +21,17 @@ sed -i 's/OpenWrt/Cudy-Tr3000/g' package/base-files/files/bin/config_generate
 
 # Enable USB power for Cudy TR3000 by default
 sed -i '/modem-power/,/};/{s/gpio-export,output = <1>;/gpio-export,output = <0>;/}' target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dtsi
+
+# Set timezon and ntp server
+sed -i 's/0.openwrt.pool.ntp.org/ntp.aliyun.com/g' package/base-files/files/bin/config_generate
+sed -i 's/1.openwrt.pool.ntp.org/ntp1.aliyun.com/g' package/base-files/files/bin/config_generate
+sed -i 's/2.openwrt.pool.ntp.org/ntp2.aliyun.com/g' package/base-files/files/bin/config_generate
+sed -i 's/3.openwrt.pool.ntp.org/ntp3.aliyun.com/g' package/base-files/files/bin/config_generate
+sed -i 's/UTC/Asia\/Shanghai/g' package/base-files/files/bin/config_generate
+sed -i 's/GMT0/CST-8/g' package/base-files/files/bin/config_generate  
+sed "/set system.ntp.enabled='1'/d" package/base-files/files/bin/config_generate
+sed "/set system.ntp.enable_server='0'/d" package/base-files/files/bin/config_generate
+sed "/^set system.@system[-1].urandom_seed='0'\$/a\\
+  set system.@system[-1].log_proto='udp'\\
+  set system.@system[-1].conloglevel='8'\\
+  set system.@system[-1].cronloglevel='7'" package/base-files/files/bin/config_generate
