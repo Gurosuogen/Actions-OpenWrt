@@ -23,17 +23,17 @@ sed -i \
   -e 's/GMT0/CST-8/g' \
   -e "/set system.ntp.enabled='1'/d" \
   -e "/set system.ntp.enable_server='0'/d" \
-  package/base-files/files/bin/config_generate
+  config_generate && sleep 2 &&
 
 sed -i '/set system\.@system\[-1\]\.urandom_seed='\''0'\''/a\
-set system.@system[-1].log_proto='\''udp'\''\
-set system.@system[-1].conloglevel='\''8'\''\
-set system.@system[-1].cronloglevel='\''7'\''\
-' package/base-files/files/bin/config_generate
+                set system.@system[-1].log_proto='\''udp'\''\
+                set system.@system[-1].conloglevel='\''8'\''\
+                set system.@system[-1].cronloglevel='\''7'\''\
+' config_generate && sleep 2 &&
 
 sed -i '/add_list network.loopback.ipaddr='\''127.0.0.1\/8'\''/a\
-set network.tailscale=interface\
-set network.tailscale.proto='\''none'\''\
-set network.tailscale.device='\''tailscale0'\''\
-set network.tailscale.packet_steering='\''1'\''
-' package/base-files/files/bin/config_generate
+                set network.tailscale='\''interface'\''\
+                set network.tailscale.proto='\''none'\''\
+                set network.tailscale.device='\''tailscale0'\''\
+                set network.tailscale.packet_steering='\''1'\''
+' config_generate
