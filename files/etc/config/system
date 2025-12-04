@@ -1,0 +1,12 @@
+system.@system[0]=system
+system.@system[0].hostname='Cudy-Tr3000'
+system.@system[0].timezone='CST-8'
+system.@system[0].ttylogin='0'
+system.@system[0].log_size='128'
+system.@system[0].urandom_seed='0'
+system.@system[0].log_proto='udp'
+system.@system[0].conloglevel='8'
+system.@system[0].cronloglevel='7'
+system.@system[0].zonename='Asia/Shanghai'
+system.ntp=timeserver
+system.ntp.server='ntp.aliyun.com' 'ntp1.aliyun.com' 'ntp2.aliyun.com' 'ntp3.aliyun.com'
