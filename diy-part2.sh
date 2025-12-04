@@ -10,20 +10,11 @@
 # See /LICENSE for more information.
 #
 
+# Enable USB power for Cudy TR3000 by default
 sed -i '/modem-power/,/};/{s/gpio-export,output = <1>;/gpio-export,output = <0>;/}' target/linux/mediatek/dts/mt7981b-cudy-tr3000-v1.dtsi
 
-sed -i \
-  -e 's/192.168.1.1/192.168.10.1/g' \
-  -e 's/OpenWrt/Cudy-Tr3000/g' \
-  -e 's/0.openwrt.pool.ntp.org/ntp.aliyun.com/g' \
-  -e 's/1.openwrt.pool.ntp.org/ntp1.aliyun.com/g' \
-  -e 's/2.openwrt.pool.ntp.org/ntp2.aliyun.com/g' \
-  -e 's/3.openwrt.pool.ntp.org/ntp3.aliyun.com/g' \
-  -e 's/UTC/Asia\/Shanghai/g' \
-  -e 's/GMT0/CST-8/g' \
-  -e "/set system.ntp.enabled='1'/d" \
-  -e "/set system.ntp.enable_server='0'/d" \
-  package/base-files/files/bin/config_generate && sleep 2 &&
+# Modify default IP
+sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
 sed -i '/set system\.@system\[-1\]\.urandom_seed='\''0'\''/a\
                 set system.@system[-1].log_proto='\''udp'\''\
@@ -35,7 +26,18 @@ sed -i '/set system\.@system\[-1\]\.urandom_seed='\''0'\''/a\
                 set network.tailscale.packet_steering='\''1'\''
 ' package/base-files/files/bin/config_generate
 
-# && sleep 2 &&
+#sed -i \
+#  -e 's/192.168.1.1/192.168.10.1/g' \
+#  -e 's/OpenWrt/Cudy-Tr3000/g' \
+#  -e 's/0.openwrt.pool.ntp.org/ntp.aliyun.com/g' \
+#  -e 's/1.openwrt.pool.ntp.org/ntp1.aliyun.com/g' \
+#  -e 's/2.openwrt.pool.ntp.org/ntp2.aliyun.com/g' \
+#  -e 's/3.openwrt.pool.ntp.org/ntp3.aliyun.com/g' \
+#  -e 's/UTC/Asia\/Shanghai/g' \
+#  -e 's/GMT0/CST-8/g' \
+#  -e "/set system.ntp.enabled='1'/d" \
+#  -e "/set system.ntp.enable_server='0'/d" \
+#  package/base-files/files/bin/config_generate
 
 #sed -i '/add_list network.loopback.ipaddr='\''127.0.0.1\/8'\''/a\
 #                set network.tailscale='\''interface'\''\
