@@ -16,10 +16,8 @@ sed -i '/modem-power/,/};/{s/gpio-export,output = <1>;/gpio-export,output = <0>;
 # Modify default IP
 sed -i 's/192.168.1.1/192.168.10.1/g' package/base-files/files/bin/config_generate
 
+# Create tailscale interface
 sed -i '/set system\.@system\[-1\]\.urandom_seed='\''0'\''/a\
-                # set system.@system[-1].log_proto='\''udp'\''\
-                # set system.@system[-1].conloglevel='\''8'\''\
-                # set system.@system[-1].cronloglevel='\''7'\''\
                 set network.tailscale='\''interface'\''\
                 set network.tailscale.proto='\''none'\''\
                 set network.tailscale.device='\''tailscale0'\''\
@@ -38,6 +36,10 @@ sed -i '/set system\.@system\[-1\]\.urandom_seed='\''0'\''/a\
 #  -e "/set system.ntp.enabled='1'/d" \
 #  -e "/set system.ntp.enable_server='0'/d" \
 #  package/base-files/files/bin/config_generate
+
+# set system.@system[-1].log_proto='\''udp'\''\
+# set system.@system[-1].conloglevel='\''8'\''\
+# set system.@system[-1].cronloglevel='\''7'\''\
 
 #sed -i '/add_list network.loopback.ipaddr='\''127.0.0.1\/8'\''/a\
 #                set network.tailscale='\''interface'\''\
